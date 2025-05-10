@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information for {{ city }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center" style="color: aliceblue;">Weather Information for {{ city }}</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Current Weather</h5>
+                        <p class="card-text">Condition: {{ weather }}<br> ({{ description }})</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Temperature</h5>
+                        <p class="card-text">Current: {{ temperature | round(2) }} °C</p>
+                        <p class="card-text">Feels Like: {{ feels_like | round(2) }} °C</p>
+                        <p class="card-text">Min: {{ min_temp | round(2) }} °C</p>
+                        <p class="card-text">Max: {{ max_temp | round(2) }} °C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Humidity & Visibility</h5>
+                        <p class="card-text">Humidity: {{ humidity }}%</p>
+                        <p class="card-text">Visibility: {{ visibility }} km</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Wind Information</h5>
+                        <p class="card-text">Wind Speed: {{ wind_speed }} m/s</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Sunrise & Sunset</h5>
+                        <p class="card-text">Sunrise: {{ sunrise_local.strftime('%Y-%m-%d %H:%M:%S') }} (Local Time)</p>
+                        <p class="card-text">Sunset: {{ sunset_local.strftime('%Y-%m-%d %H:%M:%S') }} (Local Time)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Current Time</h5>
+                        <p class="card-text">{{ current_local.strftime('%Y-%m-%d %H:%M:%S') }} (Local Time)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Check Another City</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
